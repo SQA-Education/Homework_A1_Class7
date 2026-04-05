@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQA Education - A1 Class 7 Homework</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0edf6;min-height:100vh;padding:0}.header{background:linear-gradient(135deg,#5B5091 0%,#7B6DB5 100%);padding:25px 20px;text-align:center;color:#fff}.header img{width:160px;margin-bottom:10px}.logo-text{font-size:22px;font-weight:700;letter-spacing:1px}.level-badge{display:inline-block;background:#F5A623;color:#fff;padding:4px 16px;border-radius:20px;font-size:13px;font-weight:700;margin:8px 0}.header h1{font-size:20px;margin:5px 0 2px}.header p{font-size:14px;opacity:.85}.container{max-width:640px;margin:0 auto;padding:15px}.card{background:#fff;border-radius:16px;padding:24px;margin-bottom:16px;box-shadow:0 2px 12px rgba(91,80,145,.1)}.card h2{color:#5B5091;font-size:18px;margin-bottom:12px}.card h2 span{font-size:14px;color:#F5A623}.progress{background:#e8e4f5;border-radius:10px;height:8px;margin-bottom:15px;overflow:hidden}.progress-bar{background:linear-gradient(90deg,#5B5091,#F5A623);height:100%;border-radius:10px;transition:width .5s}.progress-text{display:flex;justify-content:space-between;font-size:12px;color:#888;margin-bottom:4px}.section{display:none}.section.active{display:block}.name-input{width:100%;padding:14px;border:2px solid #e0dce8;border-radius:12px;font-size:16px;margin:10px 0;outline:none}.name-input:focus{border-color:#5B5091}.class-select{width:100%;padding:14px;border:2px solid #e0dce8;border-radius:12px;font-size:15px;margin:10px 0;outline:none;background:#fff;color:#333;appearance:auto}.class-select:focus{border-color:#5B5091}.btn{display:inline-block;padding:12px 28px;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}.btn-primary{background:#5B5091;color:#fff}.btn-primary:hover{background:#4a4080;transform:translateY(-1px)}.btn-orange{background:#F5A623;color:#fff}.btn-orange:hover{background:#e09510;transform:translateY(-1px)}.btn-secondary{background:#e8e4f5;color:#5B5091}.btn-secondary:hover{background:#d8d2ec}.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}.nav-buttons{display:flex;justify-content:space-between;margin-top:20px;gap:10px}.audio-controls{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap}.audio-btn{padding:10px 18px;border:2px solid #5B5091;background:#fff;color:#5B5091;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer}.audio-btn:hover{background:#5B5091;color:#fff}.transcript{background:#f8f7fc;border-radius:12px;padding:16px;margin:12px 0;line-height:1.8;font-size:15px;border-left:4px solid #5B5091;display:none}.transcript .speaker{font-weight:700;color:#5B5091}.q-block{background:#f8f7fc;border-radius:12px;padding:16px;margin:10px 0}.q-block p{font-weight:600;color:#333;margin-bottom:8px}.q-option{display:block;padding:10px 14px;margin:4px 0;border:2px solid #e0dce8;border-radius:10px;cursor:pointer;transition:all .2s;font-size:14px}.q-option:hover{border-color:#5B5091;background:#f0edf6}.q-option.selected{border-color:#5B5091;background:#e8e4f5;font-weight:600}.q-option.correct{border-color:#27ae60;background:#e8f8f0;color:#27ae60}.q-option.wrong{border-color:#e74c3c;background:#fde8e8;color:#e74c3c}.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}.vocab-word,.vocab-def{padding:12px;border-radius:10px;text-align:center;cursor:pointer;font-size:14px;font-weight:600;transition:all .2s;min-height:50px;display:flex;align-items:center;justify-content:center}.vocab-word{background:#5B5091;color:#fff;border:2px solid #5B5091}.vocab-def{background:#fff;color:#333;border:2px solid #e0dce8}.vocab-word.selected{background:#F5A623;border-color:#F5A623;transform:scale(1.05)}.vocab-def.selected{border-color:#F5A623;background:#fff8e8;transform:scale(1.05)}.vocab-word.matched,.vocab-def.matched{opacity:.5;cursor:default;transform:none}.vocab-word.correct,.vocab-def.correct{border-color:#27ae60;background:#e8f8f0;color:#27ae60}.match-feedback{text-align:center;padding:8px;font-weight:600;border-radius:8px;margin:8px 0;display:none}.writing-area{width:100%;min-height:120px;padding:14px;border:2px solid #e0dce8;border-radius:12px;font-size:15px;font-family:inherit;resize:vertical;outline:none;line-height:1.6}.writing-area:focus{border-color:#5B5091}.word-count{text-align:right;font-size:12px;color:#888;margin-top:4px}.writing-prompt{background:#f8f7fc;border-radius:12px;padding:16px;margin:10px 0;border-left:4px solid #F5A623}.example-box{background:#e8f8f0;border-radius:10px;padding:12px;margin:8px 0;font-size:14px;color:#333}.example-box strong{color:#5B5091}.feedback-box{background:#f0fdf4;border:2px solid #27ae60;border-radius:12px;padding:16px;margin:12px 0;display:none}.feedback-box h3{color:#27ae60;margin-bottom:8px}.mic-btn{width:80px;height:80px;border-radius:50%;background:#5B5091;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;margin:15px auto;transition:all .2s}.mic-btn:hover{background:#4a4080;transform:scale(1.05)}.mic-btn:disabled{background:#ccc;cursor:not-allowed;transform:none}.mic-btn.recording{background:#e74c3c;animation:pulse-rec 1.5s infinite}.mic-btn svg{width:36px;height:36px;fill:#fff}@keyframes pulse-rec{0%,100%{box-shadow:0 0 0 0 rgba(231,76,60,.4)}50%{box-shadow:0 0 0 15px rgba(231,76,60,0)}}.status-text{text-align:center;color:#666;margin:8px 0;font-size:14px}.timer{text-align:center;font-size:24px;font-weight:700;color:#5B5091;margin:5px 0}.recording-list{margin:12px 0}.recording-item{background:#f8f7fc;border-radius:10px;padding:12px;margin:8px 0;display:flex;align-items:center;gap:10px}.recording-item audio{flex:1;height:36px}.speaking-prompt{background:#f8f7fc;border-radius:12px;padding:16px;margin:12px 0;border-left:4px solid #5B5091}.score-card{background:linear-gradient(135deg,#5B5091,#7B6DB5);border-radius:20px;padding:30px;text-align:center;color:#fff;margin:16px 0}.score-big{font-size:56px;font-weight:800}.score-label{font-size:14px;opacity:.8;margin-bottom:15px}.score-detail{display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px;margin-top:15px}.score-item{background:rgba(255,255,255,.15);border-radius:12px;padding:10px 16px;min-width:100px}.score-item .num{font-size:20px;font-weight:700}.score-item .lbl{font-size:11px;opacity:.7}.submit-success{background:#e8f8f0;border:2px solid #27ae60;border-radius:12px;padding:16px;margin:12px 0;display:none;text-align:center}.submit-success h3{color:#27ae60}</style>
+</head>
+<body>
+<div class="header">
+<img src="../logo.png" onerror="this.outerHTML='<div class=\'logo-text\'>📚 SQA Education</div>'" alt="SQA Education">
+<div class="level-badge">CEFR Level A1 - Beginner</div>
+<h1>📘 Class 7 Homework: Professions & Articles A/An</h1>
+<p>Practical Skills 1 — Week 4</p>
+</div>
+<div class="container">
+<div class="section active" id="s0"><div class="card">
+<h2>Welcome to Your Homework! 🎉</h2>
+<p style="color:#555;margin-bottom:10px">Complete all 5 sections to finish your homework.</p>
+<div style="margin:16px 0"><label style="font-weight:600;color:#5B5091">Your Name:</label>
+<input type="text" class="name-input" id="studentName" placeholder="Type your full name here..."></div>
+<div style="margin:10px 0"><label style="font-weight:600;color:#5B5091">Your Class:</label>
+<select class="class-select" id="studentClass"><option value="">-- Select your class --</option>
+<option value="3087">3087 — Mon/Wed 11:00 AM (Eunice)</option>
+<option value="3097">3097 — Tue/Thu 6:30 PM (Eunice)</option></select></div>
+<button class="btn btn-primary" onclick="startHomework()" style="width:100%">Start Homework →</button>
+</div></div>
+
+<div class="section" id="s1"><div class="card">
+<div class="progress-text"><span>Section 1 of 5</span><span>20%</span></div>
+<div class="progress"><div class="progress-bar" style="width:20%"></div></div>
+<h2>🎧 1. Listening <span>— Talking About Jobs</span></h2>
+<p style="color:#555;margin-bottom:10px">Listen to the conversation and answer the questions.</p>
+<div class="audio-controls">
+<button class="audio-btn" onclick="playAudio()">▶️ Play</button>
+<button class="audio-btn" onclick="pauseAudio()">⏸️ Pause</button>
+<button class="audio-btn" onclick="stopAudio()">⏹️ Stop</button>
+<button class="audio-btn" onclick="toggleTranscript()">📄 Show Text</button>
+</div>
+<div class="transcript" id="transcript"><p><span class="speaker">Anna:</span> Hello! I'm Anna. Nice to meet you.</p>
+<p><span class="speaker">Tom:</span> Hi! Nice to meet you too. I'm Tom.</p>
+<p><span class="speaker">Anna:</span> What do you do?</p>
+<p><span class="speaker">Tom:</span> I'm a teacher. I work at a school. What about you?</p>
+<p><span class="speaker">Anna:</span> I'm a doctor. I work at a hospital.</p>
+<p><span class="speaker">Tom:</span> That's interesting! Is your brother a doctor too?</p>
+<p><span class="speaker">Anna:</span> No, he isn't. He is an engineer.</p>
+<p><span class="speaker">Tom:</span> My sister is an artist. She paints pictures.</p>
+</div>
+<div id="listenQuestions"><div class="q-block"><p>1. What is Tom's job?</p>
+<label class="q-option" onclick="selectQ(this,'lq1','a')">A doctor</label>
+<label class="q-option" onclick="selectQ(this,'lq1','b')">A teacher</label>
+<label class="q-option" onclick="selectQ(this,'lq1','c')">An engineer</label>
+</div>
+<div class="q-block"><p>2. Where does Anna work?</p>
+<label class="q-option" onclick="selectQ(this,'lq2','a')">At a school</label>
+<label class="q-option" onclick="selectQ(this,'lq2','b')">At an office</label>
+<label class="q-option" onclick="selectQ(this,'lq2','c')">At a hospital</label>
+</div>
+<div class="q-block"><p>3. What is Anna's brother?</p>
+<label class="q-option" onclick="selectQ(this,'lq3','a')">An engineer</label>
+<label class="q-option" onclick="selectQ(this,'lq3','b')">A teacher</label>
+<label class="q-option" onclick="selectQ(this,'lq3','c')">An artist</label>
+</div>
+</div>
+<div class="nav-buttons"><div></div><button class="btn btn-primary" onclick="checkListening()">Check & Continue →</button></div>
+</div></div>
+
+<div class="section" id="s2"><div class="card">
+<div class="progress-text"><span>Section 2 of 5</span><span>40%</span></div>
+<div class="progress"><div class="progress-bar" style="width:40%"></div></div>
+<h2>📚 2. Vocabulary <span>— Professions</span></h2>
+<p style="color:#555;margin-bottom:6px">Tap a job in purple, then tap where that person works in white.</p>
+<div class="match-feedback" id="matchFeedback"></div>
+<div class="vocab-grid" id="vocabGrid"></div>
+<p id="vocabScore" style="text-align:center;font-weight:600;color:#5B5091;margin:8px 0"></p>
+<div class="nav-buttons"><button class="btn btn-secondary" onclick="goTo('s1')">← Back</button>
+<button class="btn btn-primary" id="vocabNext" onclick="goTo('s3')" disabled>Continue →</button></div>
+</div></div>
+
+<div class="section" id="s3"><div class="card">
+<div class="progress-text"><span>Section 3 of 5</span><span>60%</span></div>
+<div class="progress"><div class="progress-bar" style="width:60%"></div></div>
+<h2>✍️ 3. Writing <span>— Jobs and Articles</span></h2>
+<div class="writing-prompt"><p><strong>Write 5 sentences about jobs. Use "a" or "an" correctly.</strong></p></div>
+<div class="example-box"><strong>Example:</strong> She is <strong>a</strong> teacher. He is <strong>an</strong> engineer. I am <strong>a</strong> student. My mother is <strong>a</strong> nurse. My friend is <strong>an</strong> artist.</div>
+<textarea class="writing-area" id="writingText" placeholder="Write here..." oninput="countWords()"></textarea>
+<div class="word-count"><span id="wc">0</span> words</div>
+<button class="btn btn-orange" onclick="checkWriting()" style="width:100%;margin-top:8px">Get Feedback ✏️</button>
+<div class="feedback-box" id="writingFeedback"></div>
+<div class="nav-buttons"><button class="btn btn-secondary" onclick="goTo('s2')">← Back</button>
+<button class="btn btn-primary" id="writingNext" onclick="goTo('s4')" disabled>Continue →</button></div>
+</div></div>
+
+<div class="section" id="s4"><div class="card">
+<div class="progress-text"><span>Section 4 of 5</span><span>80%</span></div>
+<div class="progress"><div class="progress-bar" style="width:80%"></div></div>
+<h2>🎤 4. Speaking <span>— Role Play: Meeting Someone New</span></h2>
+<div class="speaking-prompt"><p><strong>Record yourself (up to 20 seconds):</strong></p><p style="margin-top:8px">1. Hello! My name is [name]. Nice to meet you.<br>2. What do you do?<br>3. I am a [your job]. I work at [place].<br>4. My [family member] is a/an [job].</p></div>
+<div class="status-text" id="statusText">Tap the microphone to start recording</div>
+<div class="timer" id="recTimer" style="display:none">0:00</div>
+<button class="mic-btn" id="micBtn" onclick="toggleRec()"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+<div class="recording-list" id="recordings"></div>
+<div id="speakTranscriptBox" style="display:none;background:#f8f7fc;border-radius:12px;padding:14px;margin:10px 0;border-left:4px solid #5B5091">
+<p style="font-size:12px;color:#888;margin-bottom:6px">📝 What we heard:</p>
+<p id="speakTranscriptText" style="font-size:14px;color:#333;line-height:1.6;font-style:italic"></p>
+</div>
+<div class="feedback-box" id="speakFeedback"></div>
+<div class="nav-buttons"><button class="btn btn-secondary" onclick="goTo('s3')">← Back</button>
+<button class="btn btn-primary" id="speakNext" onclick="goTo('s5')" disabled>Continue →</button></div>
+</div></div>
+
+<div class="section" id="s5"><div class="card">
+<div class="progress-text"><span>Section 5 of 5</span><span>100%</span></div>
+<div class="progress"><div class="progress-bar" style="width:100%"></div></div>
+<h2>📖 5. Grammar <span>— Articles A/An & Verb "To Be"</span></h2>
+<div id="grammarQs"></div>
+<div class="nav-buttons"><button class="btn btn-secondary" onclick="goTo('s4')">← Back</button>
+<button class="btn btn-orange" onclick="submitFinal()" style="min-width:180px">Submit Homework ✓</button></div>
+</div></div>
+
+<div class="container">
+<div class="section" id="results">
+<div class="score-card"><p style="opacity:.8">🎉 Great job completing your homework!</p>
+<div class="score-big" id="totalPct">0%</div><div class="score-label">Total Score</div>
+<div class="score-detail">
+<div class="score-item"><div class="num" id="scL">0/3</div><div class="lbl">Listening</div></div>
+<div class="score-item"><div class="num" id="scV">0/6</div><div class="lbl">Vocabulary</div></div>
+<div class="score-item"><div class="num" id="scW">0/20</div><div class="lbl">Writing</div></div>
+<div class="score-item"><div class="num" id="scS">0/20</div><div class="lbl">Speaking</div></div>
+<div class="score-item"><div class="num" id="scG">0/8</div><div class="lbl">Grammar</div></div>
+</div></div>
+<div class="card" style="text-align:center">
+<button class="btn btn-orange" onclick="submitToTeacher()" id="submitBtn" style="width:100%;font-size:16px;padding:14px">📤 Submit to Teacher</button>
+<div class="submit-success" id="submitSuccess"><h3>✅ Submitted!</h3><p>Your homework has been sent to your teacher.</p></div>
+<p style="color:#888;font-size:12px;margin-top:8px">This will open a Google Form with your scores and writing feedback.</p>
+</div></div>
+</div>
+</div>
+
+<script>
+const SESSION='Class 7';
+const SPEAKING_LIMIT=20; // Classes 5-8 = 20s
+let sn='',sClass='',sc={l:0,v:0,w:0,s:0,g:0};
+let isRec=false,recTime=0,recTimer=null,recognition=null;let writingText='',spokenTranscript='';
+const answers={lq1:'b',lq2:'c',lq3:'a',};let selectedQ={};
+const dialogue=[{s:'Anna',t:'Hello! I\'m Anna. Nice to meet you.',g:'f'},{s:'Tom',t:'Hi! Nice to meet you too. I\'m Tom.',g:'m'},{s:'Anna',t:'What do you do?',g:'f'},{s:'Tom',t:'I\'m a teacher. I work at a school. What about you?',g:'m'},{s:'Anna',t:'I\'m a doctor. I work at a hospital.',g:'f'},{s:'Tom',t:'That\'s interesting! Is your brother a doctor too?',g:'m'},{s:'Anna',t:'No, he isn\'t. He is an engineer.',g:'f'},{s:'Tom',t:'My sister is an artist. She paints pictures.',g:'m'},];
+const vocabPairs=[{w:'Teacher',d:'Works at a school'},{w:'Doctor',d:'Works at a hospital'},{w:'Engineer',d:'Designs and builds things'},{w:'Nurse',d:'Helps doctors with patients'},{w:'Cook',d:'Makes food in a kitchen'},{w:'Artist',d:'Creates paintings and drawings'},];
+function goTo(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function startHomework(){
+  sn=document.getElementById('studentName').value.trim();
+  sClass=document.getElementById('studentClass').value;
+  if(!sn){alert('Please enter your name');return;}
+  if(!sClass){alert('Please select your class');return;}
+  goTo('s1');
+}
+let synth=window.speechSynthesis,utterance=null,dIdx=0;
+
+function getVoice(gender){
+  const voices=synth.getVoices();
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  if(!eng.length) return voices[0]||null;
+  const femaleNames=/samantha|karen|fiona|victoria|zira|moira|tessa|allison|ava|susan|sara|female/i;
+  const maleNames=/daniel|david|james|alex|fred|tom|gordon|oliver|male/i;
+  if(gender==='f'){const fv=eng.find(v=>femaleNames.test(v.name)&&!/male/i.test(v.name));return fv||eng[0];}
+  else{const mv=eng.find(v=>maleNames.test(v.name)&&!/female/i.test(v.name));return mv||(eng[1]||eng[0]);}
+}
+function speakLine(){
+  if(dIdx>=dialogue.length) return;
+  const line=dialogue[dIdx];
+  utterance=new SpeechSynthesisUtterance(line.t);
+  const gender=line.g||(line.s==='Sara'||line.s==='Anna'||line.s==='A'?'f':'m');
+  utterance.voice=getVoice(gender==='f'?'f':'m');
+  utterance.rate=gender==='f'?0.9:0.8;
+  utterance.pitch=gender==='f'?1.4:0.6;
+  utterance.onend=()=>{dIdx++;setTimeout(speakLine,600)};
+  synth.speak(utterance);
+}
+function playAudio(){synth.cancel();dIdx=0;if(synth.getVoices().length===0){speechSynthesis.onvoiceschanged=()=>speakLine();return}speakLine()}
+function pauseAudio(){synth.pause()}function stopAudio(){synth.cancel();dIdx=0}
+function toggleTranscript(){const t=document.getElementById('transcript');t.style.display=t.style.display==='none'?'block':'none'}
+if(typeof speechSynthesis!=='undefined')speechSynthesis.onvoiceschanged=()=>{};
+function selectQ(el,qid,val){el.parentElement.querySelectorAll('.q-option').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');selectedQ[qid]=val}
+function checkListening(){let c=0;Object.keys(answers).forEach(qid=>{if(selectedQ[qid]===answers[qid])c++;const block=document.querySelectorAll('.q-block')[Object.keys(answers).indexOf(qid)];block.querySelectorAll('.q-option').forEach(o=>{const v=o.getAttribute('onclick').match(/'([^']*)'\)$/)[1];if(v===answers[qid])o.classList.add('correct');else if(o.classList.contains('selected'))o.classList.add('wrong')})});sc.l=c;goTo('s2')}
+let selWord=null,selDef=null,matched=0;
+function initVocab(){const grid=document.getElementById('vocabGrid');grid.innerHTML='';[...vocabPairs].sort(()=>Math.random()-.5).forEach(p=>{const el=document.createElement('div');el.className='vocab-word';el.textContent=p.w;el.dataset.idx=vocabPairs.indexOf(p);el.onclick=()=>pickWord(el);grid.appendChild(el)});[...vocabPairs].sort(()=>Math.random()-.5).forEach(p=>{const el=document.createElement('div');el.className='vocab-def';el.textContent=p.d;el.dataset.idx=vocabPairs.indexOf(p);el.onclick=()=>pickDef(el);grid.appendChild(el)})}
+function pickWord(el){if(el.classList.contains('matched'))return;document.querySelectorAll('.vocab-word').forEach(w=>w.classList.remove('selected'));el.classList.add('selected');selWord=el;tryMatch()}
+function pickDef(el){if(el.classList.contains('matched'))return;document.querySelectorAll('.vocab-def').forEach(d=>d.classList.remove('selected'));el.classList.add('selected');selDef=el;tryMatch()}
+function tryMatch(){if(!selWord||!selDef)return;const fb=document.getElementById('matchFeedback');fb.style.display='block';if(selWord.dataset.idx===selDef.dataset.idx){selWord.classList.add('matched','correct');selDef.classList.add('matched','correct');matched++;sc.v=matched;fb.textContent='✅ Correct!';fb.style.background='#e8f8f0';fb.style.color='#27ae60';document.getElementById('vocabScore').textContent=matched+'/'+vocabPairs.length+' matched';if(matched===vocabPairs.length)document.getElementById('vocabNext').disabled=false}else{fb.textContent='❌ Try again!';fb.style.background='#fde8e8';fb.style.color='#e74c3c'}selWord.classList.remove('selected');selDef.classList.remove('selected');selWord=null;selDef=null;setTimeout(()=>{fb.style.display='none'},1200)}
+document.addEventListener('DOMContentLoaded', function(){ initVocab(); });
+function countWords(){const t=document.getElementById('writingText').value.trim();document.getElementById('wc').textContent=t?t.split(/\s+/).filter(Boolean).length:0}
+let autoStopTimer=null;
+const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(SpeechRecognition){
+  recognition=new SpeechRecognition();
+  recognition.continuous=false;
+  recognition.interimResults=true;
+  recognition.lang='en-US';
+  recognition.onerror=()=>{};
+}
+function isRealSpeech(text){
+  const w=text.trim().split(/\s+/).filter(Boolean);
+  if(w.length<2)return false;
+  const realWords=['my','name','is','nice','meet','you','i','am','a','an','work','at','teacher','doctor','nurse','engineer','artist','cook','driver','pilot','singer','mother','father','sister','brother','friend','hello','hi','how','are','good','what','do'];
+  return w.filter(x=>realWords.includes(x.toLowerCase().replace(/[^a-z]/g,''))).length>=1;
+}
+function toggleRec(){if(!isRec) startRec(); else stopRec();}
+function startRec(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){alert('Speech recognition not supported. Please use Chrome.');return;}
+  spokenTranscript='';
+  var box=document.getElementById('speakTranscriptBox');
+  if(box){box.style.display='none';}
+  var txt=document.getElementById('speakTranscriptText');
+  if(txt){txt.textContent='';}
+  isRec=true;recTime=0;
+  document.getElementById('micBtn').classList.add('recording');
+  document.getElementById('statusText').textContent='🔴 Recording... tap again to stop';
+  recTimer=setInterval(function(){
+    recTime++;
+    var t=document.getElementById('recTimer');
+    if(t)t.textContent=Math.floor(recTime/60)+':'+String(recTime%60).padStart(2,'0');
+  },1000);
+  recognition=new SR();
+  recognition.continuous=false;recognition.interimResults=false;recognition.lang='en-US';
+  recognition.onresult=function(e){
+    spokenTranscript+=e.results[0][0].transcript+' ';
+    var txt=document.getElementById('speakTranscriptText');
+    if(txt){txt.textContent=spokenTranscript.trim();}
+    var box=document.getElementById('speakTranscriptBox');
+    if(box){box.style.display='block';}
+  };
+  recognition.onerror=function(){};
+  recognition.onend=function(){if(isRec){try{recognition.start();}catch(err){}}};
+  try{recognition.start();}catch(e){}
+}
+function stopRec(){
+  isRec=false;clearInterval(recTimer);
+  if(recognition){try{recognition.stop();}catch(e){} recognition=null;}
+  document.getElementById('micBtn').classList.remove('recording');
+  document.getElementById('statusText').textContent='Recording saved!';
+}
+
+function scoreSpeaking(){
+  const t=spokenTranscript||document.getElementById('speakTranscriptText').textContent||'';
+  const hasRealSpeech=isRealSpeech(t);
+  let pts=0;const details=[];
+  if(hasRealSpeech){
+    // Introduction: split into two parts so partial credit works
+    if(/my name is \w+/i.test(t)&&/nice to meet you/i.test(t)){pts+=5;details.push('✅ Full introduction: "My name is..." and "Nice to meet you"');}
+    else if(/my name is \w+/i.test(t)){pts+=3;details.push('⚠️ Said "My name is..." — also say "Nice to meet you!" for full credit');}
+    else if(/hello|hi\b|how are you|good (morning|afternoon|evening)/i.test(t)){pts+=2;details.push('⚠️ Said a greeting — also say "My name is [name]. Nice to meet you!" for full credit');}
+    else{details.push('❌ Missing introduction — say "My name is [name]. Nice to meet you."');}
+    if(/i am a |i'm a |i am an |i'm an /i.test(t)){pts+=5;details.push('✅ Said your job with "I am a/an [job]"');}
+    else if(/i am|i'm/i.test(t)){pts+=2;details.push('⚠️ Said "I am" — add your job: "I am a teacher" or "I am an engineer"');}
+    else{details.push('❌ Missing "I am a/an [job]" — must include a or an');}
+    if(/i work at/i.test(t)){pts+=5;details.push('✅ Said "I work at [place]"');}
+    else if(/work/i.test(t)){pts+=2;details.push('⚠️ Said "work" — say the full phrase: "I work at a school"');}
+    else{details.push('❌ Missing "I work at [place]"');}
+    if(/my (mother|father|sister|brother|son|daughter|husband|wife|friend|family member) is (a |an )/i.test(t)){pts+=5;details.push('✅ Said a family member\'s job with "a/an"');}
+    else if(/my (mother|father|sister|brother|son|daughter|husband|wife|friend)/i.test(t)){pts+=2;details.push('⚠️ Mentioned a family member — add their job: "My sister is a nurse"');}
+    else{details.push('❌ Missing family member job — say "My [family member] is a/an [job]"');}
+  } else if(!SpeechRecognition){
+    details.push('⚠️ Auto-check not available in this browser. Teacher will review your recording.');
+  } else {
+    details.push('⚠️ No clear speech detected. Speak clearly close to the mic and try again.');
+  }
+  sc.s=pts;
+  const fb=document.getElementById('speakFeedback');
+  let msg='<h3>🎤 Speaking Score: '+pts+'/20</h3>';
+  msg+='<ul style="margin:8px 0;padding-left:20px">';
+  details.forEach(d=>msg+='<li style="margin:4px 0">'+d+'</li>');
+  msg+='</ul>';
+  if(pts===20) msg+='<p style="color:#27ae60;font-weight:600">Perfect! 🌟</p>';
+  else if(pts>=12) msg+='<p style="color:#F5A623;font-weight:600">Good effort! Try again to say all the required phrases.</p>';
+  else if(pts>0) msg+='<p>Keep practicing! Say each phrase as a complete sentence.</p>';
+  else msg+='<p>Try again — speak clearly and say all 4 phrases.</p>';
+  msg+='<button class="btn btn-secondary" onclick="resetSpeaking()" style="margin-top:10px">🔄 Try Again</button>';
+  fb.innerHTML=msg;fb.style.display='block';
+  document.getElementById('speakNext').disabled=false;
+  document.getElementById('statusText').textContent='Done! Review your score below.';
+}
+function resetSpeaking(){
+  document.getElementById('speakFeedback').style.display='none';
+  document.getElementById('speakTranscriptBox').style.display='none';
+  document.getElementById('speakTranscriptText').textContent='';
+  document.getElementById('recordings').innerHTML='';
+  document.getElementById('statusText').textContent='Tap the microphone to start recording';
+  spokenTranscript='';
+}
+function stopRec_(){
+  if(mediaRec&&mediaRec.state==='recording')mediaRec.stop();
+  isRec=false;clearInterval(recInterval);clearTimeout(autoStopTimer);
+  document.getElementById('micBtn').classList.remove('recording');
+  document.getElementById('statusText').textContent='Checking your speaking...';
+  document.getElementById('recTimer').style.display='none';
+}
+function initGrammar(){const c=document.getElementById('grammarQs');c.innerHTML='';grammarData.forEach((g,i)=>{let h='<div class="q-block"><p>'+(i+1)+'. '+g.q+'</p>';g.opts.forEach((o,j)=>{h+='<label class="q-option" onclick="selGrammar('+i+','+j+',this)">'+String.fromCharCode(97+j)+') '+o+'</label>'});h+='</div>';c.innerHTML+=h})}
+function selGrammar(qi,oi,el){el.parentElement.querySelectorAll('.q-option').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');grammarSel[qi]=oi}
+function submitFinal(){let gc=0;grammarData.forEach((g,i)=>{if(grammarSel[i]===g.ans)gc++;const block=document.querySelectorAll('#grammarQs .q-block')[i];block.querySelectorAll('.q-option').forEach((o,j)=>{if(j===g.ans)o.classList.add('correct');else if(j===grammarSel[i])o.classList.add('wrong')})});sc.g=gc;const total=sc.l+sc.v+sc.w+sc.s+sc.g;const pct=Math.round(total/57*100);document.getElementById('totalPct').textContent=pct+'%';document.getElementById('scL').textContent=sc.l+'/3';document.getElementById('scV').textContent=sc.v+'/6';document.getElementById('scW').textContent=sc.w+'/20';document.getElementById('scS').textContent=sc.s+'/20';document.getElementById('scG').textContent=sc.g+'/8';goTo('results')}
+function submitToTeacher(){
+  const btn=document.getElementById('submitBtn');
+  if(btn){btn.disabled=true;btn.textContent='Submitting...';}
+  const formData=new FormData();
+  formData.append('entry.154629934',sn||document.getElementById('studentName').value.trim());
+  formData.append('entry.771629595',sClass||document.getElementById('studentClass').value||'');
+  formData.append('entry.1564061356',SESSION);
+  formData.append('entry.1994438750',sc.l+'/3');
+  formData.append('entry.1169985852',sc.v+'/6');
+  formData.append('entry.66378887',sc.w+'/20');
+  formData.append('entry.665897330',sc.s+'/20');
+  formData.append('entry.1528226896',sc.g+'/8');
+  formData.append('entry.543147037',pct+'%');
+  formData.append('entry.301386877',wt);
+  formData.append('entry.879060890',st);
+  formData.append('entry.1451249480','A1');
+  fetch('https://docs.google.com/forms/d/e/1FAIpQLSfxgLZofrw5wLjtEaU9K0xgJWqztxigBXxpHCXe2Ndi3UOpnQ/formResponse',{method:'POST',mode:'no-cors',body:formData}).catch(function(){});
+  if(btn){btn.textContent='Submitted ✓';btn.style.background='#22c55e';}
+  var status=document.getElementById('submitSuccess');
+  if(status){status.style.display='block';}
+  var status2=document.getElementById('submitStatus');
+  if(status2){status2.innerHTML='✅ <strong>Homework submitted successfully!</strong><br><span style="font-size:0.9em;color:#555">Your teacher has received your work.</span><br><br><button onclick="location.reload()" style="margin-top:8px;padding:10px 20px;background:#5B5091;color:#fff;border:none;border-radius:10px;font-size:15px;cursor:pointer;font-family:inherit">🔄 Retake Homework</button>';status2.style.display='block';}
+}
+
+function checkWriting(){
+  const t=document.getElementById('writingText').value.trim();
+  const words=t?t.split(/\s+/).filter(Boolean):[];
+  if(words.length===0){sc.w=0;const fb=document.getElementById('writingFeedback');fb.innerHTML='<h3>\u2705 Feedback</h3><p><strong>Score: 0/20</strong></p><p style="color:#888">Nothing written yet \u2014 try to write sentences using professions and articles a/an next time.</p>';fb.style.display='block';document.getElementById('writingNext').disabled=false;return;}
+  let pts=0;writingText=t;let details=[];
+  // Grammar point: a/an — all checks run independently so errors don't block partial credit
+  const wrongAN=/(an)\s+(teacher|doctor|nurse|student|cook|driver|pilot|singer|farmer|lawyer|police)/i;
+  const wrongA=/(a)\s+(engineer|actor|artist|accountant|electrician|architect|author|officer)/i;
+  const correctArticle=/(a\s+(teacher|doctor|nurse|student|cook|driver|pilot|singer|farmer|lawyer))|(an\s+(engineer|actor|artist|accountant|electrician|architect|author|officer))/i;
+  const hasProfessionWithArticle=/(a|an)\s+(teacher|doctor|nurse|engineer|student|cook|driver|pilot|artist|singer|farmer|actor|accountant|lawyer)/i;
+  if(wrongAN.test(t)&&!wrongA.test(t)){
+    details.push('\u274c Article error: use "a" before consonant sounds \u2014 e.g. "a teacher", "a doctor", "a nurse"');
+    if(hasProfessionWithArticle.test(t)) pts+=2;
+  } else if(wrongA.test(t)&&!wrongAN.test(t)){
+    details.push('\u274c Article error: use "an" before vowel sounds \u2014 e.g. "an engineer", "an artist", "an actor"');
+    if(hasProfessionWithArticle.test(t)) pts+=2;
+  } else if(correctArticle.test(t)||hasProfessionWithArticle.test(t)){
+    pts+=5;details.push('\u2705 Correct article (a/an) used before profession (grammar point)');
+  } else {
+    details.push('\u274c Missing a profession with a/an \u2014 e.g. "She is a teacher" or "He is an engineer"');
+  }
+  if(/(i am a|i am an|i'm a|i'm an|she is a|she is an|he is a|he is an|they are|we are)/i.test(t)){pts+=5;details.push('\u2705 Correct subject + verb "to be" structure');}
+  else if(/(i am|she is|he is|they are|we are)/i.test(t)){pts+=3;details.push('\u26a0\ufe0f Good "to be" usage \u2014 try adding a profession: "I am a teacher"');}
+  else{details.push('\u274c Use full sentences: "I am a...", "She is an...", "He is a..."');}
+  const profCount=(t.match(/(teacher|doctor|nurse|engineer|student|cook|driver|pilot|artist|singer|farmer|actor|lawyer)/gi)||[]).length;
+  if(profCount>=2){pts+=5;details.push('\u2705 Mentioned '+profCount+' different professions');}
+  else if(profCount===1){pts+=2;details.push('\u26a0\ufe0f Try to mention at least 2 different professions');}
+  else{details.push('\u274c Try to mention at least 2 different professions');}
+  if(/work(s)?\s+at|at\s+(a|an|the)\s+(school|hospital|office|restaurant|store|clinic|factory|bank)/i.test(t)){pts+=5;details.push('\u2705 Mentioned where someone works');}
+  else if(/work|school|hospital|office|clinic/i.test(t)){pts+=2;details.push('\u26a0\ufe0f Try "She works at a hospital" or "He works at a school"');}
+  else{details.push('\u274c Try mentioning where someone works \u2014 "She works at a hospital"');}
+  sc.w=Math.min(20,Math.max(0,pts));
+  let msg='<h3>\u2705 Feedback</h3><p><strong>Score: '+sc.w+'/20</strong></p><ul style="margin:8px 0;padding-left:20px">';
+  details.forEach(d=>msg+='<li style="margin:4px 0">'+d+'</li>');msg+='</ul>';
+  if(sc.w>=16)msg+="<p style='color:#27ae60;font-weight:600'>Excellent work! Great use of articles! \U0001f31f</p>";
+  else if(sc.w>=8)msg+='<p>Good effort! Pay attention to a vs an before professions.</p>';
+  else msg+='<p>Review: use <strong>a</strong> before consonant sounds (a teacher), <strong>an</strong> before vowel sounds (an engineer).</p>';
+  document.getElementById('writingFeedback').innerHTML=msg;document.getElementById('writingFeedback').style.display='block';document.getElementById('writingNext').disabled=false;
+}
+const grammarData=[{q:'He is _____ teacher.',opts:['a','an','the'],ans:0},{q:'She is _____ engineer.',opts:['a','an','the'],ans:1},{q:'I am _____ student.',opts:['a','an','the'],ans:0},{q:'Tom is _____ actor.',opts:['a','an','the'],ans:1},{q:'Complete: She _____ a nurse.',opts:['am','is','are'],ans:1},{q:'Complete: They _____ doctors.',opts:['am','is','are'],ans:2},{q:'Which is correct?',opts:['He is a artist.','He is an artist.','He is artist.'],ans:1},{q:'Complete: _____ you a teacher?',opts:['Am','Is','Are'],ans:2},];let grammarSel={};
+initGrammar();
+
+</script>
+</body>
+</html>
