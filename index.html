@@ -321,6 +321,7 @@ function submitToTeacher(){
   var pct=Math.round((sc.l+sc.v+sc.w+sc.s+sc.g)/57*100);
   var wt=writingText||document.getElementById('writingText').value.trim()||'';
   var st=spokenTranscript||document.getElementById('speakTranscriptText').textContent.trim()||'No transcript captured';
+  var teacher=document.getElementById('teacherName').value||'';
   var formData=new FormData();
   formData.append('entry.154629934',sn);
   formData.append('entry.771629595',sClass);
@@ -333,7 +334,7 @@ function submitToTeacher(){
   formData.append('entry.543147037',pct+'%');
   formData.append('entry.301386877',wt||'');
   formData.append('entry.879060890',st);
-  formData.append('entry.1451249480','A1');
+  formData.append('entry.1451249480',teacher);
   var status=document.getElementById('submitStatus');
   fetch('https://docs.google.com/forms/d/e/1FAIpQLSfxgLZofrw5wLjtEaU9K0xgJWqztxigBXxpHCXe2Ndi3UOpnQ/formResponse',{method:'POST',mode:'no-cors',body:formData})
     .then(function(){
