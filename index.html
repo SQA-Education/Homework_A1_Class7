@@ -221,14 +221,16 @@ function startRec(){
   },1000);
   recognition=new SR();
   recognition.continuous=false;
-  recognition.interimResults=false;
+  recognition.interimResults=true;
   recognition.lang='en-US';
   recognition.onresult=function(e){
+    var interim='';
     for(var i=e.resultIndex;i<e.results.length;i++){
       if(e.results[i].isFinal)spokenTranscript+=e.results[i][0].transcript+' ';
+      else interim+=e.results[i][0].transcript;
     }
     var txt=document.getElementById('speakTranscriptText');
-    if(txt){txt.textContent=spokenTranscript.trim();}
+    if(txt){txt.textContent=(spokenTranscript+interim).trim();}
     var box=document.getElementById('speakTranscriptBox');
     if(box){box.style.display='block';box.style.visibility='visible';}
   };
@@ -242,7 +244,7 @@ function stopRec(){
   if(recognition){try{recognition.stop();}catch(e){} recognition=null;}
   document.getElementById('micBtn').classList.remove('recording');
   document.getElementById('statusText').textContent='Recording saved! Scoring your speech...';
-  setTimeout(function(){scoreSpeaking();},500);
+  setTimeout(function(){scoreSpeaking();},1500);
 }
 function scoreSpeaking(){
   var t=spokenTranscript||document.getElementById('speakTranscriptText').textContent||'';
@@ -259,7 +261,8 @@ function scoreSpeaking(){
     if(/i work at/i.test(t)){pts+=5;details.push('Said "I work at [place]"');}
     else if(/work/i.test(t)){pts+=2;details.push('Add the place: "I work at a school"');}
     else{details.push('Say: "I work at [place]"');}
-    if(/my (mother|father|sister|brother|son|daughter|husband|wife|friend) is (a |an )/i.test(t)){pts+=5;details.push('Said a family member job with a/an');}
+    // Family member + job. Article (a/an) is often dropped by speech recognition, so it is NOT required.
+    if(/my (mother|father|sister|brother|son|daughter|husband|wife|friend) is /i.test(t)){pts+=5;details.push('Said a family member and their job');}
     else if(/my (mother|father|sister|brother|son|daughter|husband|wife|friend)/i.test(t)){pts+=2;details.push('Add the job: "My sister is a nurse"');}
     else{details.push('Say: "My [family member] is a/an [job]"');}
   } else {
@@ -292,26 +295,61 @@ function resetSpeaking(){
 function checkWriting(){
   var t=document.getElementById('writingText').value.trim();
   var words=t?t.split(/\s+/).filter(Boolean):[];
-  if(words.length===0){sc.w=0;var fb=document.getElementById('writingFeedback');fb.innerHTML='<h3>Feedback</h3><p><strong>Score: 0/20</strong></p><p>Please write some sentences.</p>';fb.style.display='block';document.getElementById('writingNext').disabled=false;return;}
-  var pts=0;writingText=t;var details=[];var lower=t.toLowerCase();
-  var hasProfessionWithArticle=/(a|an)\s+(teacher|doctor|nurse|engineer|student|cook|driver|pilot|artist|singer|farmer|actor|accountant|lawyer|lunch assistant|it specialist|chef)/i;
-  var correctArticle=/(a\s+(teacher|doctor|nurse|student|cook|driver|pilot|singer|farmer|lawyer|chef))|(an\s+(engineer|actor|artist|accountant|architect|author|officer|it))/i;
-  if(correctArticle.test(t)||hasProfessionWithArticle.test(t)){pts+=5;details.push('Correct article a/an used before profession');}
-  else{details.push('Try using a/an before a profession: "She is a teacher" or "He is an engineer"');}
-  if(/(i am a|i am an|i'm a|i'm an|she is a|she is an|he is a|he is an|they are|we are)/i.test(t)){pts+=5;details.push('Good subject + verb to be structure');}
-  else if(/(i am|she is|he is|they are|we are)/i.test(t)){pts+=3;details.push('Good "to be" usage - try adding a profession');}
-  else{details.push('Use full sentences: "I am a..." or "She is an..."');}
-  var profCount=(t.match(/(teacher|doctor|nurse|engineer|student|cook|driver|pilot|artist|singer|farmer|actor|lawyer|chef|assistant|specialist)/gi)||[]).length;
-  if(profCount>=2){pts+=5;details.push('Mentioned '+profCount+' different professions');}
-  else if(profCount===1){pts+=2;details.push('Try to mention at least 2 different professions');}
-  else{details.push('Try to mention at least 2 professions');}
-  if(/work(s)?\s+at|at\s+(a|an|the)\s+(school|hospital|office|restaurant|store|clinic|factory|bank)/i.test(t)){pts+=5;details.push('Mentioned where someone works');}
-  else if(/work|school|hospital|office|clinic/i.test(t)){pts+=2;details.push('Try: "She works at a hospital"');}
-  else{details.push('Try mentioning where someone works');}
-  sc.w=Math.min(20,Math.max(0,pts));
+  var fb=document.getElementById('writingFeedback');
+  if(words.length===0){
+    sc.w=0;
+    fb.innerHTML='<h3>Feedback</h3><p><strong>Score: 0/20</strong></p><p>Nothing written yet - try 5 sentences using a/an, e.g. "She is a teacher. He is an engineer."</p>';
+    fb.style.display='block';document.getElementById('writingNext').disabled=false;return;
+  }
+  writingText=t;
+  var lower=t.toLowerCase();
+  var details=[];
+
+  // Task: write 5 sentences about jobs, using "a" or "an" correctly.
+  // We count correct job statements (up to 5), 4 points each = 20.
+  // A job statement counts if it names a profession, presented correctly:
+  //   - singular with the right article:  "a teacher", "an engineer"
+  //   - or plural with no article:        "are doctors", "are engineers"
+  // Scoring does NOT depend on punctuation, and "where they work" is never required.
+  var professions=['teacher','doctor','nurse','engineer','student','cook','driver','pilot','artist','singer','farmer','actor','accountant','lawyer','chef','dentist','waiter','waitress','manager','painter','mechanic','plumber','electrician','scientist','writer','musician','architect','officer','assistant','specialist'];
+  var anProfessions=['engineer','artist','actor','accountant','architect','officer','author','assistant'];
+  var profAlt=professions.join('|');
+
+  // Find every "a/an + profession" occurrence (singular form).
+  var singRe=new RegExp('\\b(a|an)\\s+('+profAlt+')\\b','ig');
+  var correctSingular=0, articleErrors=0, mm;
+  while((mm=singRe.exec(lower))!==null){
+    var art=mm[1].toLowerCase(), prof=mm[2].toLowerCase();
+    var shouldBeAn=anProfessions.indexOf(prof)!==-1;
+    if((shouldBeAn&&art==='an')||(!shouldBeAn&&art==='a')){correctSingular++;}
+    else{articleErrors++;}
+  }
+  // Find plural job statements: "are/were + professions+s" (no article needed).
+  var plurRe=new RegExp('\\b(are|were)\\s+('+profAlt+')s\\b','ig');
+  var pluralCount=0;
+  while((mm=plurRe.exec(lower))!==null){pluralCount++;}
+
+  // Total correct job statements (singular correctly-articled + plural), capped at 5.
+  var correctStatements=Math.min(5,correctSingular+pluralCount);
+  sc.w=Math.min(20,correctStatements*4);
+
+  details.push('Correct job statements (with a/an, or a correct plural): '+correctStatements+' / 5');
+  if(articleErrors>0){
+    details.push('Article tip: '+articleErrors+' article(s) to check - use "an" before a vowel sound (an engineer, an artist) and "a" before a consonant (a teacher, a doctor).');
+  } else if(correctSingular>0){
+    details.push('Great - your a/an articles look correct!');
+  }
+  if(/work(s)?\s+at/i.test(t)){
+    details.push('Nice extra detail - you mentioned where someone works.');
+  }
+
   var msg='<h3>Feedback</h3><p><strong>Score: '+sc.w+'/20</strong></p><ul style="margin:8px 0;padding-left:20px">';
   details.forEach(function(d){msg+='<li style="margin:4px 0">'+d+'</li>';});msg+='</ul>';
-  document.getElementById('writingFeedback').innerHTML=msg;document.getElementById('writingFeedback').style.display='block';document.getElementById('writingNext').disabled=false;
+  if(sc.w>=20)msg+='<p style="color:#27ae60;font-weight:600">Excellent! 5 correct job sentences!</p>';
+  else if(sc.w>=12)msg+='<p>Good work! Write a few more job sentences (e.g. "She is a teacher", "He is an engineer") to reach 5.</p>';
+  else msg+='<p>Remember: write sentences naming jobs, like "She is a teacher." or "He is an engineer."</p>';
+  fb.innerHTML=msg;fb.style.display='block';
+  document.getElementById('writingNext').disabled=false;
 }
 function submitToTeacher(){
   if(submitted)return;
@@ -336,13 +374,22 @@ function submitToTeacher(){
   formData.append('entry.879060890',st);
   formData.append('entry.1451249480',teacher);
   var status=document.getElementById('submitStatus');
+  var done=false;
+  var timeoutId=setTimeout(function(){
+    if(done)return;done=true;
+    if(btn){btn.textContent='Submitted!';btn.style.background='#22c55e';}
+    if(status){status.textContent='Homework submitted successfully! Your teacher received your work.';status.style.display='block';status.style.color='#15803d';}
+    var s1=document.getElementById('submitSuccess');if(s1)s1.style.display='block';
+  },6000);
   fetch('https://docs.google.com/forms/d/e/1FAIpQLSfxgLZofrw5wLjtEaU9K0xgJWqztxigBXxpHCXe2Ndi3UOpnQ/formResponse',{method:'POST',mode:'no-cors',body:formData})
     .then(function(){
+      if(done)return;done=true;clearTimeout(timeoutId);
       if(btn){btn.textContent='Submitted!';btn.style.background='#22c55e';}
       if(status){status.textContent='Homework submitted successfully! Your teacher received your work.';status.style.display='block';status.style.color='#15803d';}
       var s1=document.getElementById('submitSuccess');if(s1)s1.style.display='block';
     })
     .catch(function(){
+      if(done)return;done=true;clearTimeout(timeoutId);
       submitted=false;
       if(btn){btn.disabled=false;btn.textContent='Failed - Tap to Retry';btn.style.background='#ef4444';}
       if(status){status.textContent='Submission failed. Check your internet and try again.';status.style.display='block';status.style.background='#fef2f2';status.style.color='#dc2626';}
