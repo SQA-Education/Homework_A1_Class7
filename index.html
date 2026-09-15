@@ -219,13 +219,14 @@ function startRec(){
   recognition.interimResults=true;
   recognition.lang='en-US';
   recognition.onresult=function(e){
-    var sessionFinal='',interim='';
-    for(var i=0;i<e.results.length;i++){
-      if(e.results[i].isFinal)sessionFinal+=e.results[i][0].transcript+' ';
+    var interim='';
+    for(var i=e.resultIndex;i<e.results.length;i++){
+      if(e.results[i].isFinal)persistedSpokenText+=e.results[i][0].transcript+' ';
       else interim+=e.results[i][0].transcript+' ';
     }
-    spokenTranscript=(persistedSpokenText+sessionFinal).trim();
-    var combined=(persistedSpokenText+sessionFinal+interim).trim();
+    if(persistedSpokenText.length>2000)persistedSpokenText=persistedSpokenText.slice(0,2000);
+    spokenTranscript=persistedSpokenText.trim();
+    var combined=(persistedSpokenText+interim).trim();
     var txt=document.getElementById('speakTranscriptText');
     if(txt){txt.textContent=combined;}
     var box=document.getElementById('speakTranscriptBox');
@@ -233,7 +234,6 @@ function startRec(){
   };
   recognition.onerror=function(){};
   recognition.onend=function(){
-    persistedSpokenText=spokenTranscript?spokenTranscript+' ':'';
     if(isRec){try{recognition.start();}catch(err){}}
   };
   try{recognition.start();}catch(e){}
