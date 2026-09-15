@@ -372,16 +372,22 @@ initGrammar();
   if(window.__sqaPortalSave)return; window.__sqaPortalSave=true;
   var U="https://ponilnhyehnzycspksah.supabase.co",K="sb_publishable_YWM3O7i8aHWBGOZM-vAnEw_bR4XStKm",LV="A1",SS=7;
   function g(id){var e=document.getElementById(id);return e?(''+e.value):'';}
+  function realScores(){
+    var o=null;
+    try{ if(typeof sc!=='undefined'&&sc&&typeof sc==='object')o=sc; }catch(e){}
+    try{ if(!o&&typeof scores!=='undefined'&&scores&&typeof scores==='object')o=scores; }catch(e){}
+    if(o){ for(var k in o){ if(typeof o[k]==="number") return o; } }
+    var mx=(typeof maxGrammar!=="undefined"&&maxGrammar)?maxGrammar:0;
+    var pct=null;try{if(typeof score!=="undefined"&&mx)pct=Math.round(score/mx*100);}catch(e){}
+    return {percent:pct,correct:(typeof score!=="undefined"?score:null),grammar:(typeof scoreGrammar!=="undefined"?scoreGrammar:null),grammar_max:(typeof maxGrammar!=="undefined"?maxGrammar:null)};
+  }
   function payload(){
     var q=new URLSearchParams(location.search);
     var nm=g('studentName')||(typeof studentName!=='undefined'?studentName:'')||'';
     var cl=g('className')||g('studentClass')||g('classSelect')||'';
     if(!nm&&!(q.get('sid')||q.get('email')))return null;
     var wr=g('writingAnswer')||(typeof writingText!=='undefined'?writingText:'')||'';
-    var mx=(typeof maxGrammar!=='undefined'&&maxGrammar)?maxGrammar:0;
-    var pct=null;try{if(typeof score!=='undefined'&&mx)pct=Math.round(score/mx*100);}catch(e){}
-    var sc={percent:pct,correct:(typeof score!=='undefined'?score:null),grammar:(typeof scoreGrammar!=='undefined'?scoreGrammar:null),grammar_max:(typeof maxGrammar!=='undefined'?maxGrammar:null)};
-    return {sid:(q.get('sid')||''),email:(q.get('email')||''),name:nm,className:cl,level:LV,session:SS,writingText:wr,speakingTranscript:'',scores:sc};
+    return {sid:(q.get('sid')||''),email:(q.get('email')||''),name:nm,className:cl,level:LV,session:SS,writingText:wr,speakingTranscript:'',scores:realScores()};
   }
   function portalSave(){
     var body=payload(); if(!body)return Promise.resolve("skip");
